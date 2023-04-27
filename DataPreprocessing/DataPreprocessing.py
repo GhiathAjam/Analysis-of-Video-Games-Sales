@@ -80,7 +80,7 @@ def get_info(df):
    
 def plot_hist(df):
     '''
-    Plot the histogram for each column
+    Plot a histogram for the top 15 values in each column
     '''
 
     for i in range(0, 16, 2):
@@ -109,8 +109,6 @@ def plot_hist(df):
         axes[1].set_title(column2.name)
      
 plt.show()
-
-    
 
 
 def missing_values(df):
