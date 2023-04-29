@@ -4,7 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from tabulate import tabulate
 
-
 def split_data():
     '''
     Split the dataset into train, validation and test set with ratio 60:20:20
@@ -63,6 +62,10 @@ def read_data(kind='train', features='all', encode=None, drop_cols=[]):
             if type(df.iloc[0, df.columns.get_loc(col)]) == str:
                 df = pd.concat([df, pd.get_dummies(df[col], prefix=col)], axis=1)
                 df = df.drop(col, axis=1)
+    elif encode=='Frequency':
+        for col in df.columns:
+            if col in [ 'Publisher', 'Developer', 'Platform', 'Genre',]:
+                df[col] = df[col].map(df[col].value_counts())/len(df)
 
 
     return df
