@@ -3,6 +3,7 @@ import sys; sys.path.append("../")
 import pandas as pd
 import matplotlib.pyplot as plt
 from tabulate import tabulate
+from sklearn.impute import KNNImputer
 
 def split_data():
     '''
@@ -80,7 +81,7 @@ def get_info(df):
     # get summary about the dataset
     print(tabulate(df.describe(), headers='keys', tablefmt='psql')) 
 
-def handle_missing_values(df, handling_method='drop'):
+def handle_missing_values(df, handling_method='drop', neighbors=2):
     '''
     Dealing with the missing values in the dataset
     '''
@@ -108,6 +109,10 @@ def handle_missing_values(df, handling_method='drop'):
 
     elif handling_method== 'interpolate':
         df = df.interpolate(method='linear', axis=0).ffill().bfill()
+
+    elif handling_method == 'knn':
+        imputer = KNNImputer(n_neighbors=neighbors)
+        df = pd.DataFrame(imputer.fit_transform(df), columns = df.columns)
 
     return df
 
