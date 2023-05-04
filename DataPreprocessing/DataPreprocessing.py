@@ -114,6 +114,36 @@ def handle_missing_values(df, handling_method='drop', neighbors=2):
         imputer = KNNImputer(n_neighbors=neighbors)
         df = pd.DataFrame(imputer.fit_transform(df), columns = df.columns)
 
+    # BAD IDEA categorical mode, numerical: others
+    elif handling_method == 'mode_mean':
+        for col in df.columns:
+            if df.dtypes[col] == 'object':
+                df[col] = df[col].fillna(df[col].mode()[0])
+            else:
+                df[col] = df[col].fillna(df[col].mean())
+
+    elif handling_method == 'mode_median':
+        for col in df.columns:
+            if df.dtypes[col] == 'object':
+                df[col] = df[col].fillna(df[col].mode()[0])
+            else:
+                df[col] = df[col].fillna(df[col].median())
+
+    elif handling_method == 'mode_interpolate':
+        for col in df.columns:
+            if df.dtypes[col] == 'object':
+                df[col] = df[col].fillna(df[col].mode()[0])
+            else:
+                df[col] = df[col].interpolate(method='linear', axis=0).ffill().bfill()
+
+    elif handling_method == 'mode_knn':
+        for col in df.columns:
+            if df.dtypes[col] == 'object':
+                df[col] = df[col].fillna(df[col].mode()[0])
+            else:
+                imputer = KNNImputer(n_neighbors=neighbors)
+                df[col] = pd.DataFrame(imputer.fit_transform(df[col]), columns = df[col].columns)
+
     return df
 
 
