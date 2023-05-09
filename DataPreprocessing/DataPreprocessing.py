@@ -189,10 +189,13 @@ def remove_outliers(df, col):
     outliers = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
     return outliers.index, outliers
 
-def remove_all_outliers(df, cols):
+def remove_all_outliers(df, cols=[]):
     '''
     Remove outliers from all specified columns in the dataset 
     '''
+    if len(cols) == 0:
+        # get names of all numerical columns
+        cols = [col for col in df.columns if df.dtypes[col] != 'object']
     for col in cols:
         outliers_index, outliers  =remove_outliers(df, col)
         num_outliers = len(outliers)
@@ -216,4 +219,5 @@ def remove_common_outliers(df, cols):
     #remove outliers from the dataset
     df = df.drop(common_index, axis=0)
     return df
+
 
