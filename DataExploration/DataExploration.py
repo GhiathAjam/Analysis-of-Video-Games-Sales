@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 
 def plott_missing_values(df):
     '''
@@ -55,3 +56,12 @@ def plot_corr_matrix(df):
     sns.heatmap(num_corr, annot=True, cmap='Blues')
     plt.title(f"Correlation matrix between features")
     plt.show()
+
+def show_nulls(df):
+    '''
+    Show the percentage of missing values in each column
+    '''
+    null_data = (df.isnull().sum() / len(df)) * 100
+    null_data = null_data.drop(null_data[null_data == 0].index).sort_values(ascending=False)[:30]
+    missing_data = pd.DataFrame({'Missing Ratio' :null_data})
+    return missing_data
