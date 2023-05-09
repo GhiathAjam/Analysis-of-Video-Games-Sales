@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-
+import seaborn as sns
 
 def plott_missing_values(df):
     '''
@@ -16,7 +16,7 @@ def plot_hist(df):
     Plot a histogram for the top 15 values in each column
     '''
 
-    for i in range(0, 16, 2):
+    for i in range(0, 16, 4):
         fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(15,5))
 
         column1 = df.iloc[:, i]
@@ -41,4 +41,17 @@ def plot_hist(df):
         axes[0].set_title(column1.name)
         axes[1].set_title(column2.name)
      
-plt.show()
+    plt.show()
+
+def plot_corr_matrix(df):
+    '''
+    Plot the correlation matrix between the numerical features
+    '''
+    num_features = [col for col in df.columns if type(df.iloc[0, df.columns.get_loc(col)]) != str]
+    df_num_features = df[num_features]
+    num_corr= df_num_features.corr()
+    plt.figure(figsize=(8,6))
+    # draw correlation matrix with green shades
+    sns.heatmap(num_corr, annot=True, cmap='Blues')
+    plt.title(f"Correlation matrix between features")
+    plt.show()
