@@ -172,31 +172,33 @@ def detect_outliers(df):
 
         print(f'Number of outliers in {col}: {num_outliers}')
 
+def remove_outliers(df, col):
+    '''
+    Remove outliers from a certain column in the dataset
+    '''
+    # calculate interquartile range (IQR)
+    q1 = df[col].quantile(0.25)
+    q3 = df[col].quantile(0.75)
+    iqr = q3 - q1 
+
+    # calculate the lower and upper bound
+    lower_bound = q1 - (1.5 * iqr) 
+    upper_bound = q3 + (1.5 * iqr)
+
+    # get the number of outliers
+    outliers = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
+    return outliers.index, outliers
+
 def remove_all_outliers(df, cols):
     '''
     Remove outliers from all specified columns in the dataset 
     '''
     for col in cols:
-        # calculate interquartile range (IQR)
-        q1 = df[col].quantile(0.25)
-        q3 = df[col].quantile(0.75)
-
-        iqr = q3 - q1 
-
-        # calculate the lower and upper bound
-        lower_bound = q1 - (1.5 * iqr) 
-        upper_bound = q3 + (1.5 * iqr)
-
-        # get the number of outliers
-        outliers = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
-        outliers_index = outliers.index
+        outliers_index, outliers  =remove_outliers(df, col)
         num_outliers = len(outliers)
-
         print(f'Number of outliers to be removed from {col}: {num_outliers}')
-
         # remove outliers from the dataset
         df = df.drop(outliers_index, axis=0)
-
     return df
 
 def remove_common_outliers(df, cols):
@@ -206,17 +208,8 @@ def remove_common_outliers(df, cols):
     common_index = []
     for col in cols:
         # calculate interquartile range (IQR)
-        q1 = df[col].quantile(0.25)
-        q3 = df[col].quantile(0.75)
-        iqr = q3 - q1 
-        # calculate the lower and upper bound
-        lower_bound = q1 - (1.5 * iqr) 
-        upper_bound = q3 + (1.5 * iqr)
-        # get the number of outliers
-        outliers = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
-        outliers_index = outliers.index
+        outliers_index, _  =remove_outliers(df, col)
         common_index.extend(outliers_index)
-
     # remove duplicates form the list
     common_index = list(set(common_index))
     print(f'Number of outliers removed: {len(common_index)}')
