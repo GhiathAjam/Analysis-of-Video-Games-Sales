@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import numpy as np
 
 def plott_missing_values(df):
     '''
@@ -65,3 +66,24 @@ def show_nulls(df):
     null_data = null_data.drop(null_data[null_data == 0].index).sort_values(ascending=False)[:30]
     missing_data = pd.DataFrame({'Missing Ratio' :null_data})
     return missing_data
+
+def show_unique(df):
+    '''
+    Show the number of unique values in each column
+    '''
+    unique_data = df.nunique().sort_values(ascending=False)[:30]
+    unique_data = pd.DataFrame({'#Unique Values' :unique_data})
+    return unique_data
+
+def plt_hist(col, title,df,color='blue'):
+    fig, ax = plt.subplots(figsize=(6,4))
+    sns.histplot(df[col], color=color, kde=True, bins=25)
+    plt.title(title, fontsize=18, y=1.02)
+    ax.set_xlabel(col,fontsize=15)
+
+def count_plot(col,df, title=''):
+    # plot the distribution of ratings
+    plt.figure(figsize=(6,4))
+    sns.countplot(x=col, data=df)
+    plt.title(title)
+    plt.show()
