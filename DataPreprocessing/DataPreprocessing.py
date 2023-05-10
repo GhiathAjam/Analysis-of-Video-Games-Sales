@@ -152,7 +152,9 @@ def detect_outliers(df):
     Detect #outliers in a certain column
     '''
     numerical_features = [col for col in df.columns if df.dtypes[col] != 'object']
-
+    # create data frame for outliers
+    outliers_df = pd.DataFrame(columns=['Feature', 'Number of outliers'])
+    all=0
     for col in numerical_features:
 
         # calculate interquartile range (IQR)
@@ -167,10 +169,11 @@ def detect_outliers(df):
 
         # get the number of outliers
         outliers = df[(df[col] < lower_bound) | (df[col] > upper_bound)]
-        # outliers_index = outliers.index
-        num_outliers = len(outliers)
-
-        print(f'Number of outliers in {col}: {num_outliers}')
+        outliers_df = outliers_df.append({'Feature': col, 'Number of outliers': len(outliers)}, ignore_index=True)
+        all+=len(outliers)
+    # add col for sum of all outliers
+    outliers_df = outliers_df.append({'Feature': 'All', 'Number of outliers': all}, ignore_index=True)
+    return outliers_df
 
 def remove_outliers(df, col):
     '''
@@ -220,4 +223,8 @@ def remove_common_outliers(df, cols):
     df = df.drop(common_index, axis=0)
     return df
 
-
+def show_nulls(df):
+    null_data = (df.isnull().sum() / len(df)) * 100
+    null_data = null_data.drop(null_data[null_data == 0].index).sort_values(ascending=False)[:30]
+    missing_data = pd.DataFrame({'Missing Ratio' :null_data})
+    return missing_data
