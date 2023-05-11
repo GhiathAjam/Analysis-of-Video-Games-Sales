@@ -20,4 +20,20 @@ def ANOVA_test(df, cat_feature, num_feature, cats=[]):
     print("P-value: ", p_value)
     print("F-value: ", f_value)
 
+# compute correlation ratio between publisher and sales
+def correlation_coefficient(df, cat_feature, num_feature, cats=[]):
 
+    if len(cats) == 0:
+        cats = df[cat_feature].unique()
+
+    categories = np.array(df[cat_feature])
+    values = np.array(df[num_feature])
+    
+    group_variances = 0
+    for category in cats:
+        group = values[np.where(categories == category)[0]]
+        group_variances += len(group)*(np.mean(group)-np.mean(values))**2
+    total_variance = sum((values-np.mean(values))**2)
+
+    print("Correlation coefficient: ", group_variances/total_variance)
+    print("Correlation coefficient: ", (group_variances/total_variance)**.5)
