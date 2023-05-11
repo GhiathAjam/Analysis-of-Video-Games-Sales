@@ -142,8 +142,7 @@ def handle_missing_values(df, handling_method='drop', neighbors=2):
                 df[col] = df[col].fillna(df[col].mode()[0])
             else:
                 imputer = KNNImputer(n_neighbors=neighbors)
-                df[col] = pd.DataFrame(imputer.fit_transform(df[col]), columns = df[col].columns)
-
+                df[col] = pd.DataFrame(imputer.fit_transform(df[[col]]), columns=[col])
     return df
 
 
