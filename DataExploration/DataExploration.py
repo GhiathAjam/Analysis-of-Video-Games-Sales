@@ -45,19 +45,6 @@ def plot_hist(df):
      
     plt.show()
 
-def plot_corr_matrix(df):
-    '''
-    Plot the correlation matrix between the numerical features
-    '''
-    num_features = [col for col in df.columns if type(df.iloc[0, df.columns.get_loc(col)]) != str]
-    df_num_features = df[num_features]
-    num_corr= df_num_features.corr()
-    plt.figure(figsize=(8,6))
-    # draw correlation matrix with green shades
-    sns.heatmap(num_corr, annot=True, cmap='Blues')
-    plt.title(f"Correlation matrix between features")
-    plt.show()
-
 def show_nulls(df):
     '''
     Show the percentage of missing values in each column
@@ -96,3 +83,4 @@ def sub_blot(df, cat_col, grouby_col, col, title="",plot_kind='bar'):
         publisher_sales.plot(kind=plot_kind, ax=ax, title=genre)
     plt.tight_layout()
     plt.show()
+
