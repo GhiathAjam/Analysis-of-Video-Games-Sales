@@ -40,12 +40,12 @@ def read_data(kind='train', features='all', encode=None, drop_cols=[]):
         df = df.drop(drop_cols, axis=1) 
     
     # extract the categorical fetaures only 
-    if features==' Categorical':
+    if features=='Categorical':
         categ_features =[col for col in df.columns if df.dtypes[col] == 'object']
         df= df[categ_features] 
     
     # extract the numerical fetaures only
-    elif features==' Numerical':
+    elif features=='Numerical':
         num_features = [col for col in df.columns if df.dtypes[col] != 'object']
         df= df[num_features]
         for col in df.columns:
