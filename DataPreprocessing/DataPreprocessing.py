@@ -82,7 +82,7 @@ def get_info(df):
     # get summary about the dataset
     print(tabulate(df.describe(), headers='keys', tablefmt='psql')) 
 
-def handle_missing_values(df, handling_method='drop', neighbors=2):
+def handle_missing_values(df, handling_method='drop', neighbors=2,cols=[]):
     '''
     Dealing with the missing values in the dataset
     '''
@@ -111,9 +111,13 @@ def handle_missing_values(df, handling_method='drop', neighbors=2):
     elif handling_method== 'interpolate':
         df = df.interpolate(method='linear', axis=0).ffill().bfill()
 
-    elif handling_method == 'knn':
+    elif handling_method == 'knn': 
         imputer = KNNImputer(n_neighbors=neighbors)
-        df = pd.DataFrame(imputer.fit_transform(df), columns = df.columns)
+        if len(cols)>0:
+            imputed_cols = pd.DataFrame(imputer.fit_transform(df[cols]), columns=cols, index=df.index)
+            df = pd.concat([df.drop(cols, axis=1), imputed_cols], axis=1)
+        else:
+            df = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
 
     # BAD IDEA categorical mode, numerical: others
     elif handling_method == 'mode_mean':
