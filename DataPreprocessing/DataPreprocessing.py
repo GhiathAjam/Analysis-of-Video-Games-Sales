@@ -3,7 +3,8 @@ import sys; sys.path.append("../")
 import pandas as pd
 import matplotlib.pyplot as plt
 from tabulate import tabulate
-from sklearn.impute import KNNImputer
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import KNNImputer, IterativeImputer
 
 def split_data():
     '''
@@ -81,7 +82,7 @@ def get_info(df):
     # get summary about the dataset
     print(tabulate(df.describe(), headers='keys', tablefmt='psql')) 
 
-def handle_missing_values(df, handling_method='drop', neighbors=2):
+def handle_missing_values(df, handling_method='drop', neighbors=2,cols=[]):
     '''
     Dealing with the missing values in the dataset
     '''
@@ -110,9 +111,13 @@ def handle_missing_values(df, handling_method='drop', neighbors=2):
     elif handling_method== 'interpolate':
         df = df.interpolate(method='linear', axis=0).ffill().bfill()
 
-    elif handling_method == 'knn':
+    elif handling_method == 'knn': 
         imputer = KNNImputer(n_neighbors=neighbors)
-        df = pd.DataFrame(imputer.fit_transform(df), columns = df.columns)
+        if len(cols)>0:
+            imputed_cols = pd.DataFrame(imputer.fit_transform(df[cols]), columns=cols, index=df.index)
+            df = pd.concat([df.drop(cols, axis=1), imputed_cols], axis=1)
+        else:
+            df = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
 
     # BAD IDEA categorical mode, numerical: others
     elif handling_method == 'mode_mean':
@@ -144,6 +149,16 @@ def handle_missing_values(df, handling_method='drop', neighbors=2):
                 imputer = KNNImputer(n_neighbors=neighbors)
                 df[col] = pd.DataFrame(imputer.fit_transform(df[[col]]), columns=[col])
     
+    elif handling_method == 'mode_iter':
+        for col in df.columns:
+            if df.dtypes[col] == 'object':
+                df[col] = df[col].fillna(df[col].mode()[0])
+        numerical_cols = [col for col in df.columns if df.dtypes[col] != 'object']
+        
+        imputer = IterativeImputer()
+        df[numerical_cols] = pd.DataFrame(imputer.fit_transform(df[numerical_cols]), columns=numerical_cols)
+
+
     print(f'Number of rows after handling missing values: {len(df)} and Number of missing values: {df.isnull().any(axis=1).sum()}')
     return df
 
