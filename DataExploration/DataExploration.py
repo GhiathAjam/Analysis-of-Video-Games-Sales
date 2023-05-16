@@ -57,8 +57,8 @@ def count_plot(col,df, title=''):
     plt.title(title)
     plt.show()
 
-def sub_blot(df, cat_col, grouby_col, col, title="",plot_kind='bar'):
-    fig, axes = plt.subplots(3, 4, figsize=(20, 10))
+def sub_plots(df, cat_col, grouby_col, col, title="",plot_kind='bar',figsize=(20, 10)):
+    fig, axes = plt.subplots(3, 4, figsize=figsize)
     for i, (genre, ax) in enumerate(zip(df[cat_col].unique(), axes.flatten())):
         df_genre = df[df[cat_col] == genre]
         publisher_sales = df_genre.groupby(grouby_col)[col].mean().sort_values(ascending=False).head(10)
