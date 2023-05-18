@@ -1,5 +1,6 @@
 from scipy.stats import f_oneway
 import numpy as np
+from scipy.stats import ttest_ind
 
 
 def ANOVA_test(df, cat_feature, num_feature, cats=[]):
@@ -19,6 +20,25 @@ def ANOVA_test(df, cat_feature, num_feature, cats=[]):
     # Print the F-value and p-value
     print("P-value: ", p_value)
     print("F-value: ", f_value)
+
+def ttest(df, col, lbl):
+    # get unique labels
+    labels = df[lbl].unique()
+    # get data
+    data = [df[df[lbl] == label][col] for label in labels]
+    # ttest each pair
+    # get worst p-value
+    p = 1
+    for i in range(len(data)):
+        for j in range(i+1, len(data)):
+            tij, pij = ttest_ind(data[i], data[j])
+            # print(f'p-value for {labels[i]} Vs. {labels[j]} = {p}')
+            if pij < p:
+                t, p, label1, label2 = tij, pij, labels[i], labels[j]
+    # t, p = ttest_ind(data[0], data[1])
+    # print
+    print(f'p-value for {col} Vs. {lbl} = {p}')
+    return t, p, label1, label2
 
 # compute correlation ratio between publisher and sales
 def correlation_coefficient(df, cat_feature, num_feature, cats=[]):
