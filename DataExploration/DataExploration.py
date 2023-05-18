@@ -20,6 +20,8 @@ def plot_hist(df):
 
     for i in range(8):
         fig, axes = plt.subplots(1, 2, figsize=(15, 5))
+        sns.despine(left=False, bottom=False)
+
         for j, col in enumerate(df.columns[i*2:(i+1)*2]):
             # plot the histogram
             df[col].value_counts().head(15).plot(kind='bar', ax=axes[j])
