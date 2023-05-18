@@ -35,9 +35,7 @@ def ttest(df, col, lbl):
             # print(f'p-value for {labels[i]} Vs. {labels[j]} = {p}')
             if pij < p:
                 t, p, label1, label2 = tij, pij, labels[i], labels[j]
-    # t, p = ttest_ind(data[0], data[1])
-    # print
-    print(f'p-value for {col} Vs. {lbl} = {p}')
+   
     return t, p, label1, label2
 
 # compute correlation ratio between publisher and sales
