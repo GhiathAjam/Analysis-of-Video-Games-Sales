@@ -52,6 +52,9 @@ Data science project to analyze and understand the global sales of video games a
     
 ![](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/2082503f-d8cd-4c27-97ee-e01d76236076)
 
+  - Compare platforms based on how long they stay competitive in the market.
+
+  ![](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/64f2a198-d16c-4a51-8b37-92a1b0923a09)
 
   - Is there a certain publisher whose sales are most coming from a certain region?
     
@@ -60,6 +63,26 @@ Data science project to analyze and understand the global sales of video games a
   - For a specific genre, will its sales increase/decrease over the upcoming years?
     
  ![](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/359c508d-ca5f-4ed2-824f-a25154139532)
+
+### Mechanistic
+  -  How does the choice of platform affect sales for a specific genre?
+
+![](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/03f579ff-1a4f-445a-92f6-23d916194d1e)
+
+     1. PC & Strategy Games
+
+    PC is a very very flexible platform and has a wide variety of setups, users basically create their dream platform using it.  
+    Strategy games often involve a lot of observations and focus on signals and metrics with too much detail.  
+    PC players can have a setup of more than one monitor for the details, observation, signals and metrics to watch out for.  
+    PC players also have mouse, keyboard and even joystick to offer both precise and fast controls
+
+    2. GBA & Platform
+
+    GBA is a handheld console with D-pad and a very limited number of buttons, this makes it perfect for casual players who just want to plug-and-play with no hassle.  
+    Platform games are usually played in short sessions, have basic movements and not very much is going on the screen.  
+    Platform games could be fast-paced which requires fast controls.
+    GBA also has a D-pad which is both fast to reach and precise to control.
+
 
 ### See the project document for all analysis details 📋
 
