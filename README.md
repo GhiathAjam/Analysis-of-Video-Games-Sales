@@ -35,29 +35,31 @@ Data science project to analyze and understand the global sales of video games a
 
   - Correlation between numerical features
     
-![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/4a84d142-abc4-4ee3-9d5a-50c686ec06db)
+![image](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/a0e9f511-ebea-445a-8ce8-655245d5be0d)
+
 
 # Some analysis 📈
 
   - For games rated more than X, what is the most popular genre ?
     
-   ![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/8c48a4ab-5df3-4960-ae28-1f68fd07a5b4)
+  ![](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/65471cec-0a76-4998-b129-b674cc7579e8)
 
   - Do users or critics rate a specific platform or genre higher than others?
-    
-![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/2a6344eb-1b2c-437f-9645-8ea84b2ff3cc)
+
+![image](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/eb09e27d-44f2-4ed2-8e95-d5d94fcdaa85)
 
   - For some specific game of multiple versions, Does rating get better or worse over time?
     
-![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/55278ca2-73ee-44a7-bc30-4cbd0a023a52)
+![](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/2082503f-d8cd-4c27-97ee-e01d76236076)
+
 
   - Is there a certain publisher whose sales are most coming from a certain region?
     
-![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/79965a89-fdb8-4e64-ad2d-8900becb9521)
+![](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/ca660a88-2ee3-4ab8-91f6-937f1ebf740f)
 
   - For a specific genre, will its sales increase/decrease over the upcoming years?
     
- ![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/adae9419-a2c1-4c67-9dc5-fdf760df7f43)
+ ![](https://github.com/GhiathAjam/Analysis-of-Video-Games-Sales/assets/43111805/359c508d-ca5f-4ed2-824f-a25154139532)
 
 ### See the project document for all analysis details 📋
 
