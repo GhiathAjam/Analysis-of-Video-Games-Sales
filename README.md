@@ -2,17 +2,42 @@
 Data science project to analyze and understand the global sales of video games across different genres and identify trends in consumer behavior. The goal of this analysis is to provide insights that can inform business decisions in the video game industry and help companies optimize their sales strategies.
 
 # Project Pipeline ⚙️
+  - Data Preprocessing
   - Data Exploration
-  - Data Preparation and cleaning 
   - Descriptive Analysis 
   - Exploratory Analysis
   - Predictive Analysis
 
-# Some analysis 📈
+# Data Preprocessing Approaches 🖥
+  - Outliers Filteration
+      * Drop All
+      * Drop common outliers in all fields related to specific questions (useful as data contained too many outliers)
+  - Nulls
+      * Drop
+      * Dope (mean, mode, ... )
+  - Categoral features encoding
+
+# Data Exploration 🔍
+
+  - Discrete Features:
+      
+      <table>
+      <tr>  <td>Name</td> <td>Developer</td> <td>Rating</td> <td>Publisher</td> <td>Genre</td>   </tr>       </table>
+      - Rating: E (everyone), M(mature +17), T(teenagers) and E10+ (everyone +10)
+
+  - Continous Features:
+    * Sales in multiple regions
+    * Global Sales (aggregate of previous)
+    * Critic_Score: Aggregate score compiled by Metacritic staff.
+    * Critic_Count: The number of critics used in coming up with the Critic_score.
+    * User_Score: Score by Metacritic's subscribers
+    * User_Count: Number of users who gave the user_score"""
 
   - Correlation between numerical features
     
 ![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/4a84d142-abc4-4ee3-9d5a-50c686ec06db)
+
+# Some analysis 📈
 
   - For games rated more than X, what is the most popular genre ?
     
@@ -26,7 +51,6 @@ Data science project to analyze and understand the global sales of video games a
     
 ![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/55278ca2-73ee-44a7-bc30-4cbd0a023a52)
 
-
   - Is there a certain publisher whose sales are most coming from a certain region?
     
 ![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/79965a89-fdb8-4e64-ad2d-8900becb9521)
@@ -35,9 +59,12 @@ Data science project to analyze and understand the global sales of video games a
     
  ![image](https://github.com/GhiathAjam/Data_Science-Project/assets/76243256/adae9419-a2c1-4c67-9dc5-fdf760df7f43)
 
-# Project Document for all analysis details 📋
+### See the project document for all analysis details 📋
 
+<!--
   - https://drive.google.com/drive/folders/1USOr-5aPy2-4Wn13b_IKpOFjs3goyDmx?usp=sharing
+-->
+  - [Report](./Deliverables/DS_Report18.pdf)
     
 # Collaborators 👨🏻‍💻👩🏻‍💻
 
@@ -45,9 +72,9 @@ Data science project to analyze and understand the global sales of video games a
 <tr>
     <td align="center">
         <a href="https://github.com/GhiathAjam">
-            <img src="https://avatars.githubusercontent.com/u/43111805?v=4" width="100;" alt="Ghiath"/>
+            <img src="https://avatars.githubusercontent.com/u/43111805?v=4" width="100;" alt="Gheiath"/>
             <br />
-            <sub><b>Ghiath</b></sub>
+            <sub><b>Gheiath</b></sub>
         </a>
     </td>
    <td align="center">
